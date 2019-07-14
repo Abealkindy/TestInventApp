@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#008577</color>
+    <color name="colorPrimaryDark">#00574B</color>
+    <color name="colorAccent">#D81B60</color>
+    <color name="colorPrimaryOpacity">#fe10b6e4</color>
+    <color name="colorBlueCalm">#5CB8E7</color>
+    <color name="colorBlueStrong">#2485B5</color>
+    <color name="pale_lemon_yellow">#F29938</color>
+    <color name="pale_lemon_yellow_more">#e6bf3e</color>
+    <color name="backGroundRed">#D0021B</color>
+    <color name="colorSoftGray">#F3F4F6</color>
+    <color name="grey_very_dark">#747474</color>
+    <color name="black_with_opacity">#a0000000</color>
+</resources>

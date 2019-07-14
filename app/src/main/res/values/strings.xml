@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">Test Invent App</string>
+    <string name="username_hint">Username</string>
+    <string name="password_hint">Password</string>
+    <string name="masuk_text">Masuk</string>
+    <string name="login_text">Login</string>
+    <string name="string_internet_connection_not_available">Tidak ada koneksi internet</string>
+</resources>
