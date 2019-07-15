@@ -80,8 +80,8 @@ public class LoginActivity extends AppCompatActivity {
                 @Override
                 public void onResponse(@NonNull Call<ResultLoginModel> call, @NonNull Response<ResultLoginModel> response) {
                     hideProgress();
-                    if (Objects.requireNonNull(response.body()).getStatusCode().equals("01")) {
-                        Toast.makeText(LoginActivity.this, R.string.string_some_thing_wrong, Toast.LENGTH_SHORT).show();
+                    if (!Objects.requireNonNull(response.body()).getStatusCode().equals("01")) {
+                        Toast.makeText(LoginActivity.this, R.string.string_some_thing_wrong_login, Toast.LENGTH_SHORT).show();
                     } else {
                         startActivity(new Intent(LoginActivity.this, MainActivity.class));
                         finish();
