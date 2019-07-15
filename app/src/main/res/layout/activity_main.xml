@@ -27,10 +27,10 @@
                 android:background="@color/pale_lemon_yellow"
                 android:fontFamily="@font/montserrat"
                 android:padding="@dimen/size5dp"
+                android:text="@string/lihat_provinsi_text"
                 android:textAlignment="center"
                 android:textColor="@android:color/white"
-                android:textSize="@dimen/size20sp"
-                tools:text="Lihat Provinsi" />
+                android:textSize="@dimen/size20sp" />
 
             <Spinner
                 android:id="@+id/spinner_province"
@@ -57,10 +57,10 @@
                 android:background="@color/pale_lemon_yellow_more"
                 android:fontFamily="@font/montserrat"
                 android:padding="@dimen/size5dp"
+                android:text="@string/lihat_kota_text"
                 android:textAlignment="center"
                 android:textColor="@android:color/white"
-                android:textSize="@dimen/size20sp"
-                tools:text="Lihat Kota" />
+                android:textSize="@dimen/size20sp" />
 
             <Spinner
                 android:id="@+id/spinner_city"

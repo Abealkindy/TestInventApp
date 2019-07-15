@@ -1,31 +1,33 @@
 package com.abraham.testinventapp.networks;
 
 
-import com.abraham.testinventapp.models.LoginModel;
+import com.abraham.testinventapp.models.CityModel;
+import com.abraham.testinventapp.models.RequestLoginModel;
+import com.abraham.testinventapp.models.RequestProvinceIDModel;
+import com.abraham.testinventapp.models.ResultLoginModel;
+import com.abraham.testinventapp.models.ProvinceModel;
 
-import java.util.List;
-
-import okhttp3.MultipartBody;
-import okhttp3.RequestBody;
 import retrofit2.Call;
+import retrofit2.http.Body;
 import retrofit2.http.Field;
 import retrofit2.http.FormUrlEncoded;
-import retrofit2.http.GET;
-import retrofit2.http.Multipart;
+import retrofit2.http.Headers;
 import retrofit2.http.POST;
-import retrofit2.http.Part;
 
 
 public interface ApiService {
-
-    @FormUrlEncoded
+    @Headers({"Content-Type: application/json"})
     @POST("login")
-    Call<LoginModel> request_login(
-            @Field("Username") String username,
-            @Field("Password") String password,
-            @Field("Token") String token,
-            @Field("OsType") String osType,
-            @Field("Role") String role
+    Call<ResultLoginModel> requestLogin(
+            @Body RequestLoginModel requestLoginModel
     );
 
+    @POST("getprovince")
+    Call<ProvinceModel> getProvince();
+
+    @Headers({"Content-Type: application/json"})
+    @POST("getcity")
+    Call<CityModel> getCity(
+            @Body RequestProvinceIDModel provinceID
+    );
 }

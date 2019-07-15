@@ -1,6 +1,7 @@
-package com.abraham.testinventapp;
+package com.abraham.testinventapp.activities;
 
 import android.app.ProgressDialog;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.TextInputEditText;
@@ -8,7 +9,9 @@ import android.support.v7.app.AppCompatActivity;
 import android.widget.Button;
 import android.widget.Toast;
 
-import com.abraham.testinventapp.models.LoginModel;
+import com.abraham.testinventapp.R;
+import com.abraham.testinventapp.models.RequestLoginModel;
+import com.abraham.testinventapp.models.ResultLoginModel;
 import com.abraham.testinventapp.networks.ApiService;
 import com.abraham.testinventapp.networks.InternetConnection;
 import com.abraham.testinventapp.networks.RetrofitConfig;
@@ -51,34 +54,42 @@ public class LoginActivity extends AppCompatActivity {
         String password = Objects.requireNonNull(editTextPasswordLogin.getText()).toString();
         if (username.isEmpty() || username.equals(" ")) {
             editTextUsernameLogin.setFocusable(true);
-            editTextUsernameLogin.setError("Isi username anda terlebih dahulu!");
+            editTextUsernameLogin.setError(getResources().getString(R.string.isi_username_anda_terlebih_dahulu_alert));
         } else if (password.isEmpty() || password.equals(" ")) {
             editTextPasswordLogin.setFocusable(true);
-            editTextPasswordLogin.setError("Isi password anda terlebih dahulu!");
+            editTextPasswordLogin.setError(getResources().getString(R.string.isi_password_anda_terlebih_dahulu_alert));
         } else {
             requestLogin(username, password);
         }
     }
 
-    private void requestLogin(String username, String password) {
+    private void requestLogin(final String username, final String password) {
         if (InternetConnection.checkConnection(LoginActivity.this)) {
             ApiService apiService = RetrofitConfig.getInitRetrofit();
             showProgress();
-            Call<LoginModel> loginModelCall = apiService.request_login(
-                    username,
-                    password,
-                    "1234567890",
-                    "ANDROID",
-                    "Customer"
+            Call<ResultLoginModel> loginModelCall = apiService.requestLogin(
+                    new RequestLoginModel(
+                            username,
+                            password,
+                            "1234567890",
+                            "ANDROID",
+                            "Customer"
+                    )
             );
-            loginModelCall.enqueue(new Callback<LoginModel>() {
+            loginModelCall.enqueue(new Callback<ResultLoginModel>() {
                 @Override
-                public void onResponse(@NonNull Call<LoginModel> call, @NonNull Response<LoginModel> response) {
+                public void onResponse(@NonNull Call<ResultLoginModel> call, @NonNull Response<ResultLoginModel> response) {
                     hideProgress();
+                    if (Objects.requireNonNull(response.body()).getStatusCode().equals("01")) {
+                        Toast.makeText(LoginActivity.this, R.string.string_some_thing_wrong, Toast.LENGTH_SHORT).show();
+                    } else {
+                        startActivity(new Intent(LoginActivity.this, MainActivity.class));
+                        finish();
+                    }
                 }
 
                 @Override
-                public void onFailure(@NonNull Call<LoginModel> call, @NonNull Throwable throwable) {
+                public void onFailure(@NonNull Call<ResultLoginModel> call, @NonNull Throwable throwable) {
                     hideProgress();
                     Toast.makeText(LoginActivity.this, throwable.getMessage(), Toast.LENGTH_SHORT).show();
                 }

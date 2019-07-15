@@ -5,4 +5,9 @@
     <string name="masuk_text">Masuk</string>
     <string name="login_text">Login</string>
     <string name="string_internet_connection_not_available">Tidak ada koneksi internet</string>
+    <string name="string_some_thing_wrong">Ada kesalahan saat login, silahkan cek kembali username dan password yang anda masukkan</string>
+    <string name="isi_username_anda_terlebih_dahulu_alert">Isi username anda terlebih dahulu</string>
+    <string name="isi_password_anda_terlebih_dahulu_alert">Isi password anda terlebih dahulu</string>
+    <string name="lihat_provinsi_text">Pilih Provinsi</string>
+    <string name="lihat_kota_text">Pilih Kota</string>
 </resources>
