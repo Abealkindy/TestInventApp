@@ -34,6 +34,7 @@ public class MainActivity extends AppCompatActivity {
     Spinner spinnerCity;
 
     private String provinceID;
+    private ApiService apiService;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,7 +49,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void getProvinceData() {
-        ApiService apiService = RetrofitConfig.getInitRetrofit();
+        apiService = RetrofitConfig.getInitRetrofit();
         Call<ProvinceModel> provinceModelCall = apiService.getProvince();
         provinceModelCall.enqueue(new Callback<ProvinceModel>() {
             @Override
@@ -83,7 +84,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void getCityDataByProvinceID(String provinceID) {
-        ApiService apiService = RetrofitConfig.getInitRetrofit();
+        apiService = RetrofitConfig.getInitRetrofit();
         Call<CityModel> cityModelCall = apiService.getCity(new RequestProvinceIDModel(provinceID));
         cityModelCall.enqueue(new Callback<CityModel>() {
             @Override
